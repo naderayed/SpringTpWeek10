@@ -20,6 +20,6 @@ public class Stock {
     private Integer qteMin;
     private String libelleStock;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "stock")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "stock",fetch = FetchType.EAGER)
     List<Produit> produitList;
 }

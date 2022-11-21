@@ -27,7 +27,7 @@ public class Produit {
     @OneToMany(cascade = CascadeType.ALL,mappedBy ="produit")
     List<DetailFacture> detailFactureList;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Stock stock;
 
     @ManyToOne(cascade = CascadeType.ALL)

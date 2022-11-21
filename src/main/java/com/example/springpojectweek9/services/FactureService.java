@@ -31,8 +31,9 @@ public class FactureService implements IFactureService{
     @Override
     public void cancelFacture(Long id) {
         Facture facture = factureRepo.findById(id).orElse(null);
-        if(facture.isArchivee()){
-            factureRepo.delete(facture);
+        if(!facture.isArchivee()){
+            facture.setArchivee(true);
+            factureRepo.save(facture);
         }
 
     }

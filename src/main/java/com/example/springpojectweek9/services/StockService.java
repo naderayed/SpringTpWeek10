@@ -4,11 +4,14 @@ import com.example.springpojectweek9.Entities.Produit;
 import com.example.springpojectweek9.Entities.Stock;
 import com.example.springpojectweek9.respositories.ProduitRepo;
 import com.example.springpojectweek9.respositories.StockRepo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class StockService implements  IStockService{
     private final StockRepo stockRepo;
     private final ProduitRepo produitRepo;
@@ -50,5 +53,12 @@ public class StockService implements  IStockService{
         Stock stock = stockRepo.findById(idStock).orElse(null);
         stock.getProduitList().add(produit);
         stockRepo.save(stock);
+    }
+
+    @Scheduled(cron = "*/5 * * * * * ")
+    public void retrivesStatusStock(){
+        List<Stock> all = stockRepo.findAll();
+        log.info(all.toString());
+
     }
 }

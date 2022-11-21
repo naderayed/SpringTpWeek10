@@ -1,5 +1,6 @@
 package com.example.springpojectweek9.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,5 +21,6 @@ public class DetailFournisseur {
     private String adresse;
     private String matricule;
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "detailFournisseur")
+    @JsonIgnore
     private Fournisseur fournisseur;
 }
